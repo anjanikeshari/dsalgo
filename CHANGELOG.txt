@@ -1,0 +1,12 @@
+.. This is your project CHANGELOG file which will contain the release notes.
+.. It will appear in your project's PyPI page.
+
+Change Log
+==========
+
+0.0.1 (01/09/2021)
+-----
+
+*Release date: UNRELEASED*
+
+* Implementation of linear and non linear data structures
