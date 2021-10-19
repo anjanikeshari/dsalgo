@@ -1,4 +1,6 @@
-### Simple and Easy Package
+### Documentation
+
+## Simple and Easy Package
 
 **--This is package for enabling basic linear and non-linear data structures and algos--**
 
@@ -44,8 +46,8 @@ Searching an sorting
 
 </div>
 
-## Documentation
-This API Wrapper aims to provide a simple and easy way to use the data structures and algos
+
+This package aims to provide a simple and easy way to use the data structures and algos
 <br>
 
 
