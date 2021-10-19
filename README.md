@@ -1,6 +1,6 @@
-### Documentation
+## Documentation
 
-## Simple and Easy Package
+### Simple and Easy Package
 
 **--This is package for enabling basic linear and non-linear data structures and algos--**
 
