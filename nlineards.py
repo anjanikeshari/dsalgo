@@ -7,9 +7,8 @@ class BinarySearchTree:
     ## a reference to it's left and right children
     class Node:
         
- 
-        def __init__(self, e):
-            self.element = e
+        def __init__(self, element):
+            self.element = element
             self.left = None  # reference to the left Child
             self.right = None  # reference to the right Child
  
@@ -20,25 +19,25 @@ class BinarySearchTree:
         self._size = 0
  
     # Recursively add element e to the tree
-    def add_node(self, root, e):
+    def insert_node(self, root, element):
         # If no root exists, set new Node as root
         if self.root == None:
-            self.root = self.Node(e)
+            self.root = self.Node(element)
             self._size += 1
             return
  
-        if e < root.element:
+        if element < root.element:
             if root.left == None:
-                root.left = self.Node(e)
+                root.left = self.Node(element)
                 self._size += 1
             else:
-                self.add_node(root.left, e)
+                self.insert_node(root.left, element)
         else:
             if root.right == None:
-                root.right = self.Node(e)
+                root.right = self.Node(element)
                 self._size += 1
             else:
-                self.add_node(root.right, e)
+                self.insert_node(root.right, element)
  
     # Recursively prints the values in tree in
     # ascending order. (We use In Order traverse for that)
@@ -48,7 +47,7 @@ class BinarySearchTree:
             print(root.element, end=" ")
             self.traverse_in_order(root.right)
  
-    # Returns the largest number of edges in a path from
+    # Returns the longest path from
     # root node of tree to a leaf node.
     def height(self, root):
         if root == None:
