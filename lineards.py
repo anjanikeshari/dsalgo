@@ -6,12 +6,13 @@
 # Stack() creates a new empty stack
 
 class Stack:
+
 	def __init__(self):
 		self.items = []
 
 # isEmpty() bool
 	def isEmpty(self):
-		return self.items == []
+		return self.items ==  []
 
 # push(item) add to stack
 	def push(self, item):
