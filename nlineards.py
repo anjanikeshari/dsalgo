@@ -3,8 +3,8 @@
  # Binary Search Tree Python implementation
 class BinarySearchTree:
   
-    # This Node class creates an element and
-    # a reference to it's left and right children
+    ## This Node class creates an element and
+    ## a reference to it's left and right children
     class Node:
         
  
