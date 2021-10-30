@@ -133,14 +133,16 @@ class Deque:
 ##---Node has two part ---##
 #     - Element to be stored
 #     - Ref to next node
+#     - Ref to prev node
 
-    ## Node Class
-    class Node:
+    ## Node Class (Doubly linked list implementation)
+    class Node:  
 
         #Initialization with Constructor for Node class
         def __init__(self, element):
             self.element = element    
             self.next = None   
+            self.prev = None
 
     ##-- methods or function definitions --##
 
@@ -168,8 +170,10 @@ class Deque:
             self.head = new_elem
             self.tail = new_elem
         else:
-            self.head.next = new_elem
-            self.head = new_elem
+            new_elem.next  = self.head
+            self.head.prev = new_elem
+            self.head      = new_elem
+            
         
         self._size += 1
 
@@ -182,22 +186,44 @@ class Deque:
             self.head = new_elem
             self.tail = new_elem
         else:
-            new_elem.next = self.tail
+            new_elem.prev = self.tail
+            self.tail.next = new_elem
             self.tail = new_elem
+
         self._size += 1
 
-    def removeFront(self, element):
+    def removeFront(self):
         if self.isEmpty():
             raise IndexError('Deque is empty')
-        elif self.size == 1:
+        elif self._size == 1:
             item_removed = self.head.element
             self.head = None
             self.tail = None
-         else:
+        else:
             item_removed = self.head.element
-               
+            temp = self.head
+            
+            self.head = self.head.next
+            self.head.prev = None
+            temp.next = None
+        self._size -= 1    
+        return item_removed       
 
-
+    def removeRear(self):
+        if self.isEmpty():
+            raise IndexError('Deque is empty')
+        elif self._size == 1:
+            item_removed = self.head.element
+            self.head = None
+            self.tail = None
+        else:
+            item_removed = self.tail.element
+            temp = self.tail 
+            self.tail = self.tail.prev
+            self.tail.next = None
+            temp.prev = None
+        self._size -= 1
+        return item_removed
 
     # Return (but do not remove) the element at the front of
     # the queue. Raise exception if the queue is empty.
@@ -213,70 +239,4 @@ class Deque:
             raise IndexError('Deque is empty')
         return self.head.element
 
-
-
- # Binary Search Tree Python implementation
-class BinarySearchTree:
-  
-    # This Node class creates an element and
-    # a reference to it's left and right children
-    class Node:
-        
- 
-        def __init__(self, e):
-            self.element = e
-            self.left = None  # reference to the left Child
-            self.right = None  # reference to the right Child
- 
-# Methods
-    # create an empty BST
-    def __init__(self):
-        self.root = None
-        self._size = 0
- 
-    # Recursively add element e to the tree
-    def add_node(self, root, e):
-        # If no root exists, set new Node as root
-        if self.root == None:
-            self.root = self.Node(e)
-            self._size += 1
-            return
- 
-        if e < root.element:
-            if root.left == None:
-                root.left = self.Node(e)
-                self._size += 1
-            else:
-                self.add_node(root.left, e)
-        else:
-            if root.right == None:
-                root.right = self.Node(e)
-                self._size += 1
-            else:
-                self.add_node(root.right, e)
- 
-    # Recursively prints the values in tree in
-    # ascending order. (We use In Order traverse for that)
-    def traverse_in_order(self, root):
-        if root != None:
-            self.traverse_in_order(root.left)
-            print(root.element, end=" ")
-            self.traverse_in_order(root.right)
- 
-    # Returns the largest number of edges in a path from
-    # root node of tree to a leaf node.
-    def height(self, root):
-        if root == None:
-            return 0
- 
-        return max(self.height(root.left),
-                   self.height(root.right)) + 1
- 
-    # Returns True if no elements found in tree,
-    # else returns False
-    def is_empty(self):
-        return self._size == 0
- 
-    # Returns the number of elements in tree
-    def size(self):
-        return self._size
+    
